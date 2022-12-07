@@ -1,0 +1,32 @@
+@import "_variables.base";
+@import "_mixins";
+
+/*
+  Import vendor libraries
+*/
+@import "vendor/_normalize";
+
+/*
+  Import utils classes and base styles
+*/
+@import "_utils";
+@import "_base";
+
+
+@import "_blocks/container";
+@import "_blocks/header";
+@import "_blocks/footer";
+
+
+
+@font-face { 
+  font-family: 'Gilroy';
+  font-style: normal;
+  src: url("../fonts/Gilroy-Regular.woff") format("woff");
+}
+
+
+.heading {
+  @include font (34px, 41px, 700);
+  margin: 60px 0 20px;
+}

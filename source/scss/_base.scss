@@ -1,0 +1,49 @@
+html {
+  box-sizing: border-box;
+  text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+html,
+body {
+    font-family: 'Gilroy', sans-serif;
+    @include font;
+    color: $color-text;
+  // background-color: $color-bg;
+  // color: $color-text;  font-family: $font-base-family;
+  // font-family: 'Gilroy';
+  // height: 100%;
+  // margin: 0;
+  // min-height: 100%;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  margin: 0;
+  color: $color-text;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
