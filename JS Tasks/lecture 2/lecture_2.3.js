@@ -7,7 +7,7 @@ if (num === null || num === '' || degree === null || degree === '') {
 } else if (isNaN(num % 1) || isNaN(degree % 1)) {
   alert('Ошибка, введено НЕ ЧИСЛО')
 } else {
-  for (let i = 0; i < degree; i++ ) {
+  for (let i = 0; i < degree; i++) {
     result = result *= num
   }
   console.log(result);

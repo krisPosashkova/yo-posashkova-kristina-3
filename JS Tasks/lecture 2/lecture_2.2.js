@@ -3,11 +3,12 @@ let i = 1;
 
 if (num === null || num === '') {
   alert('Вы отказались от ввода')
-} else if (isNaN(num % 1) ) {
+} else if (Number.isNaN(num % 1)) {
   alert('Ошибка, введено НЕ ЧИСЛО')
-} 
+} else {
+  while (num) {
+    i *= num--;
+  }
+  console.log(i);
+}
 
-while(num) {
-  i *= num--;
-} 
-console.log(i);
