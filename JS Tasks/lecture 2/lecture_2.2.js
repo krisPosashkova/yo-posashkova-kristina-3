@@ -1,13 +1,13 @@
-let n = prompt("Введите число");
+let num = prompt('Введите число');
 let i = 1;
 
-if (n === null) {
+if (num === null || num === '') {
   alert('Вы отказались от ввода')
-} else if (isNaN(n % 1) ) {
+} else if (isNaN(num % 1) ) {
   alert('Ошибка, введено НЕ ЧИСЛО')
 } 
 
-while(n) {
-  i *= (n--);
+while(num) {
+  i *= num--;
 } 
 console.log(i);

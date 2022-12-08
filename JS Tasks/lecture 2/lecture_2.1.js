@@ -1,6 +1,6 @@
-let num = prompt("Введите число");
+let num = prompt('Введите число');
 
-if (num === null) {
+if (num === null || num === '') {
   alert('Вы отказались от ввода')
 } else if (isNaN(num % 1)) {
   alert('Ошибка, введено НЕ ЧИСЛО')

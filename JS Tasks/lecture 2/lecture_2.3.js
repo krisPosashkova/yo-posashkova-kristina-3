@@ -1,11 +1,8 @@
-let num = prompt("Введите число");
-let degree = prompt(" Введите степень")
+let num = prompt('Введите число');
+let degree = prompt('Введите степень')
 let result = 1;
 
-console.log(typeof num)
-console.log(typeof degree)
-
-if (num === null || degree === null) {
+if (num === null || num === '' || degree === null || degree === '') {
   alert('Вы отказались от ввода')
 } else if (isNaN(num % 1) || isNaN(degree % 1)) {
   alert('Ошибка, введено НЕ ЧИСЛО')
