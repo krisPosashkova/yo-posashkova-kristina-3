@@ -1,18 +1,20 @@
-/*
-  Код ниже нужно удалить, он добавлен просто для примера
-*/
+.footer {
+  padding: 60px 0;
 
-.contacts {
-display: flex;
-flex-direction: column;
-align-items: center;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &__text {
     max-width: 269px;
     @include font (18px, 21px, 400);
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 20px;
   }
+
   &__button {
     color: #FFFFFF;
     padding: 8px 27px;
@@ -21,39 +23,52 @@ align-items: center;
     border: 2px solid #070707;
     margin-bottom: 40px;
   }
+  
+  &__button:hover{
+    color: #070707;
+    background: #FFFFFF;
+    border: 2px solid #070707;
+    border-radius: 30px;
+  }
+
   &__list {
     display: flex;
     flex-wrap: wrap;
     max-width: 318px;
     justify-content: center;
     margin-bottom: 30px;
-    &_item {
-      border-radius: 30px;
-      border: 2px solid #070707;
-      padding: 10px 19px;
-      margin-bottom: 10px;
-      margin-right: 8px;
-
-    }
+    gap: 10px;
   }
+
+  &__list-link {
+    border-radius: 30px;
+    border: 2px solid #070707;
+    padding: 10px 19px;
+  }
+
+  &__list-link:hover  {
+    color: #FFFFFF;
+    background: #070707;
+  }
+
   &__disign {
     color: $color-text-2;
     text-align: center;
-    margin-bottom: 60px;
-    &_text {
-      @include font (14px, 16px, 400);
-      margin-bottom: 5px;
-    }
   }
-}
 
-.contacts__button:hover{
-  color: #070707;
-  background: #FFFFFF;
-  border: 2px solid #070707;
-  border-radius: 30px;
-}
+  &__design-text {
+    @include font (14px, 16px, 400);
+    margin-bottom: 5px;
+  }
 
-.contacts__list_item:nth-child(3n) {
-  margin-right: 0px;
+  &__disign-span {
+    margin-bottom: 1px;
+    border-bottom: 1px dashed #828282;
+    color: #828282;
+    cursor: pointer;
+  }
+
+  &__disign-span:hover {
+    border-bottom: 1px solid;
+  }
 }

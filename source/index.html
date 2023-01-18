@@ -20,72 +20,105 @@
     <!-- build:css -->
     <link href="css/style.min.css" rel="stylesheet">
     <!-- endbuild -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script type="module">
+      import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
+    
+      const swiper = new Swiper();
+    </script>
   </head>
   <body>
     @@include('blocks/header_home.html')
       <main>
+
         <section class="banner">
-          <div class="container">
-            <h1 class="heading">Kristina Posashkova</h1>
-            <span class="banner__info">Future front-end developer 26 years old, Tolyatti</span>
-            <div class="banner__slider">
-              <img src="" alt="">
+          <div class="banner__wrapper container">
+            <div class="banner__wrapper-title">
+              <h1 class="banner__title title">Kristina Posashkova</h1>
+              <p class="banner__description">Future front-end developer 27 years old, Tolyatti</p>
+            </div>           
+            <div class="slider slider_js">
+              <div class="slider__wrapper slider-wrapper_js ">
+                <div class="slider__inner-wrapper slider-inner_js">
+                  <div class="slider__slide slider__slide_one slider-slide_js"></div>
+                  <div class="slider__slide slider__slide_two slider-slide_js"></div>>
+                </div>
+              </div>
+              <div class="slider__bottom-panel">
+                <button class="slider__button slider__button-back button-back_js"> <img src="./img/icon/buttonBack.svg" alt="button-back"></button>
+                <div class="slider__pagination slider-pagination_js"></div>
+                <button class="slider__button slider__button-next button-next_js"> <img src="./img/icon/buttonNext.svg" alt="button-next"></button>
+              </div>
             </div>
           </div>
         </section>
         <section class="about">
-          <div class="container">
-            <h2 class="heading">About me</h2>
-            <div class="about_one">
-              <svg xmlns="http://www.w3.org/2000/svg" width="482" height="139" viewBox="0 0 482 139" fill="none">
-                <path d="M480 2H2V117H416L436 137L456 117H480V2Z" stroke="#070707" stroke-width="2.5"/>
-              </svg>
-              <p></p>
-            </div>
-            <div class="about_two">
-              <svg xmlns="http://www.w3.org/2000/svg" width="482" height="118" viewBox="0 0 482 118" fill="none">
-                <path d="M480 1.99963H2V95.9996H26L46 116L66 95.9996H480V1.99963Z" stroke="#070707" stroke-width="2.5"/>
-              </svg>
-              <p></p>
-            </div>
-            <div class="about_tree">
-              <svg xmlns="http://www.w3.org/2000/svg" width="482" height="118" viewBox="0 0 482 118" fill="none">
-                <path d="M480 2H2V96H416L436 116L456 96H480V2Z" stroke="#070707" stroke-width="2.5"/>
-              </svg>
-              <p></p>
-            </div>
-          </div>
+          <div class="about__wrapper container">
+            <h2 class="about__heading heading">About me</h2>
+            <ul class="about__list">
+              <li class="about__item about__item-right">
+                <p class="about__item-text about__item-comment"><span class="about__item-span">Professional goals:</span> I want to start a career as a Junior Frontend developer in an IT company and in 5 years
+                  grow to the position of Senior developer.</p>
+              </li>
+              <li class="about__item about__item-left">
+                <p class="about__item-text about__item-comment2"><span class="about__item-span">Education and certificates:</span>
+                  Togliatti State University - Bachelor's degree.
+                  Innopolis University - advanced training in the course "Fundamentals of Frontend development".
+                  DL Academy - certificate of completion of the course "Frontend development".</p>
+              </li>
+              <li class="about__item about__item-right">
+                <p class="about__item-text about__item-comment"><span class="about__item-span">Personal qualities:</span> Efficiency, determination, stress tolerance, ability to work in a team, discipline, accuracy.</p>
+              </li>
+            </ul>
         </section>
-        <section class="Skills">
-          <div class="container">
+        <section class="skills">
+          <div class="skills__wrapper container">
             <h2 class="heading">Skills</h2>
-            <p>I work in such programs as</p>
+            <p class="skills__text">I work in such programs as</p>
             <ul class="skills__list">
-              <li class="skills__list_item">
-                <img src="./img/icon/html.svg" alt="html icon">
+              <li class="skills__list-item">
+                <img class="skills__list-img" src="./img/icon/html.svg" alt="html icon">
               </li>
-              <li class="skills__list_item">
-                <img src="./img/icon/css.svg" alt="css icon">
+              <li class="skills__list-item">
+                <img class="skills__list-img" src="./img/icon/css.svg" alt="css icon">
               </li>
-              <li class="skills__list_item">
-                <img src="./img/icon/js.svg" alt="js icon">
+              <li class="skills__list-item">
+                <img class="skills__list-img" src="./img/icon/js.svg" alt="js icon">
               </li>
-              <li class="skills__list_item">
-                <img src="./img/icon/git.svg" alt="git icon">
+              <li class="skills__list-item">
+                <img class="skills__list-img" src="./img/icon/git.svg" alt="git icon">
               </li>
-              <li class="skills__list_item">
-                <img src="./img/icon/figma.svg" alt="figma icon">
+              <li class="skills__list-item">
+                <img class="skills__list-img" src="./img/icon/figma.svg" alt="figma icon">
               </li>
             </ul>
           </div>
         </section>
         <section class="portfolio">
-          <div class="container">
+          <div class="portfolio__wrapper container">
+            <h2 class="portfolio__heading heading">Portfolio</h2>
             <div class="portfolio__slider">
-            </div>
-            <div>
-              <a href="">Learning site for DL Academy courses</a>
-              <p>A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
+              <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide portfolio__slider-slide portfolio__slider-slide_one"></div>
+                  <div class="swiper-slide portfolio__slider-slide portfolio__slider-slide_two"></div>
+                  <div class="swiper-slide portfolio__slider-slide portfolio__slider-slide_three"></div>
+                  <div class="swiper-slide portfolio__slider-slide portfolio__slider-slide_four"></div>
+                  <div class="swiper-slide portfolio__slider-slide portfolio__slider-slide_five"></div>
+                </div>
+              
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev "></div>
+                <div class="swiper-button-next portfolio__slider-btn"></div>
+            
+              </div>
+              <div class="portfolio__description">
+                <a class="portfolio__description-link" href="">Learning site for DL Academy courses</a>
+                <p class="portfolio__description-text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -94,15 +127,19 @@
     </div>
     <button class="button-to-top button-to-top_hidden button-to-top_js" 
       type="button" 
-      aria-label="Вверх"><svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0.300781" y="12.5786" width="16.5512" height="3" rx="1.5" transform="rotate(-45 0.300781 12.5786)" fill="#070707"/>
-        <rect x="21.5801" y="14.7" width="16.5512" height="3" rx="1.5" transform="rotate(-135 21.5801 14.7)" fill="#070707"/>
-        </svg>
-        </button>
+      aria-label="Вверх">
+      <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.300781" y="12.5786" width="16.5512" height="3" rx="1.5" transform="rotate(-45 0.300781 12.5786)"/>
+        <rect x="21.5801" y="14.7" width="16.5512" height="3" rx="1.5" transform="rotate(-135 21.5801 14.7)"/>
+      </svg>
+    </button>
     @@include('blocks/sign_in_modal.html')
     @@include('blocks/register_modal.html')
-    @@include('blocks/message_modal.html')
 
     <script src="js/app.js" defer></script>
+    <script src="js/banner_slider.js" defer></script>
+    <script src="js/profile.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="js/swiper.js"></script>
   </body>
 </html>

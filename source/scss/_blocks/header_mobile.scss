@@ -1,0 +1,47 @@
+.header-mobile {
+  display: none;
+
+  &__open {
+    display: block;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(246, 246, 246, 0.99);
+    height: 100%;
+    z-index: 70;
+  }
+
+  &__close-btn {
+    position: fixed;
+    right: 13px;
+    top: 50px;
+  }
+
+  &__close-btn:hover {
+    opacity: 0.5;
+    transition: 0.4s;
+  }
+
+  &__nav {
+    position: relative;
+    transform: translateY(-50%);
+    top: 50%;
+    padding-right: 20px;
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: end;
+  }
+
+  &__nav-item {
+    @include font (34px, 41px, 700);
+  }
+}

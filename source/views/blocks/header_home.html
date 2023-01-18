@@ -2,20 +2,27 @@
   <div class="container">
     <nav class="nav">
         <div class="nav__home">
-          <a class="nav__link" href="#">Home</a>
+          <a class="nav__link nav__link-home"  href="index.html">Home</a>
         </div>
         <ul class="nav__list">
-          <li class="nav__list_item">
-            <a class="nav__list_link" href="">My blog</a>
+          <li class="nav__list-item">
+            <a class="nav__link" href="./blog.html">My blog</a>
           </li>
-          <li class="nav__list_item">
-            <button class="nav__button sign-in__js" type="button">Sign in</button>
+          <li class="nav__list-item">
+            <a class="nav__link" href="./profile.html">My profile</a>
           </li>
-          <li class="nav__list_item">
-            <button class="nav__button register__js" type="button">Register</button>
+          <li class="nav__list-item">
+            <button class="nav__button sign-in_js" type="button">Sign in</button>
+          </li>
+          <li class="nav__list-item">
+            <button class="nav__button register_js" type="button">Register</button>
           </li>
         </ul>
       </nav>
+      <div class="header__burger-menu_home header__burger-menu burger-menu_js">
+        <img src="./img/icon/menuBtn.svg" alt="">
+      </div>
+      @@include('blocks/header_mobile.html')
   </div>
   <script src="js/header_home.js" defer></script>
 </header>

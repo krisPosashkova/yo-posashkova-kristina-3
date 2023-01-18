@@ -1,20 +1,21 @@
 <footer class="footer">
-  <section class="contacts">
+  <div class="footer__wrapper container">
     <h2 class="heading">Contacts</h2>
-    <p class="contacts__text">Want to know more or just chat? You are welcome!</p>
-    <button class="contacts__button message__js" type="submit">Send message</button>
-    <ul class="contacts__list">
-      <li class="contacts__list_item"><a href="" class="contacts__list_link">Instagram</a></li>
-      <li class="contacts__list_item"><a href="" class="contacts__list_link">Vk</a></li>
-      <li class="contacts__list_item"><a href="" class="contacts__list_link">Telegram</a></li>
-      <li class="contacts__list_item"><a href="" class="contacts__list_link">Mail</a></li>
-      <li class="contacts__list_item"><a href="" class="contacts__list_link">GitHub</a></li>
-      <li class="contacts__list_item"><a href="" class="contacts__list_link">Phone</a></li>
+    <p class="footer__text">Want to know more or just chat? You are welcome!</p>
+    <button class="footer__button message_js" type="submit">Send message</button>
+    <ul class="footer__list">
+      <li class="footer__list-item"><a href="https://www.instagram.com/k_posashkova/" target="_blank" class="footer__list-link">Instagram</a></li>
+      <li class="footer__list-item"><a href="https://vk.com/kris_posashkova" target="_blank" class="footer__list-link">Vk</a></li>
+      <li class="footer__list-item"><a href="https://telegram.me/krisposashkova" target="_blank" class="footer__list-link">Telegram</a></li>
+      <li class="footer__list-item"><a href="mailto:mail@kristina.posashkova@gmail.com" target="_blank" class="footer__list-link">Mail</a></li>
+      <li class="footer__list-item"><a href="https://github.com/krisPosashkova" target="_blank" class="footer__list-link">GitHub</a></li>
+      <li class="footer__list-item"><a href="tel:+79171662429" target="_blank" class="footer__list-link">Phone</a></li>
     </ul>
-    <div class="contacts__disign">
-      <p class="contacts__disign_text">Design by DL Academy</p>
-      <p class="contacts__disign_text">Program code from Antonina</p>
+    <div class="footer__disign">
+      <p class="footer__disign-text">Design by <a href="https://dlacademy.ru/" target="_blank" class="footer__disign-span">DL Academy</a></p>
+      <p class="footer__disign-text">Program code from Kristina</p>
     </div>
-  </section>
+  </div>
+  @@include('blocks/message_modal.html')
   <script src="js/footer.js" defer></script>
 </footer>

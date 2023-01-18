@@ -1,6 +1,13 @@
 /* window.addEventListener('DOMContentLoaded', function () {
 }); */
 
+
+
+
+
+
+
+
 (function () {
     const button = document.querySelector('.button-to-top_js');
 
@@ -22,6 +29,7 @@
     })
     
 })()
+
 
 
     

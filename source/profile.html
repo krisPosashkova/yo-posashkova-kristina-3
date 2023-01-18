@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="google" content="notranslate">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>DL Academy</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <script>
+    var docElement = document.documentElement;
+    docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+  </script>
+
+  <!-- Favicon -->
+
+  <!-- build:css -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+
+<body>
+  @@include('blocks/header.html')
+  <main>
+    <section class="profile">
+      <div class="profile__wrapper container">
+        <div class="profile__wrapper-title">
+          <h1 class="profile__title title">My profile</h1>
+        </div>
+        <div class="profile__data">
+          <div class="profile__data-avatar">
+          </div>
+          <div class="profile__data-personal">
+            <div class="profile__wrapp-button">
+              <button class="button password_js" name="button" type="button">Change password</button>
+              <button class="button data_js" name="button" type="button">Change other data</button>
+              <button class="button" name="button" type="button">Delete account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  @@include('blocks/footer.html')
+  </div>
+  <button class="button-to-top button-to-top_hidden button-to-top_js" type="button" aria-label="Вверх">
+    <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0.300781" y="12.5786" width="16.5512" height="3" rx="1.5" transform="rotate(-45 0.300781 12.5786)" />
+      <rect x="21.5801" y="14.7" width="16.5512" height="3" rx="1.5" transform="rotate(-135 21.5801 14.7)" />
+    </svg>
+  </button>
+  @@include('blocks/change_password_modal.html')
+  @@include('blocks/data_modal.html')
+
+  <script src="js/app.js" defer></script>
+  <script src="js/profile.js" defer></script>
+</body>
+
+</html>

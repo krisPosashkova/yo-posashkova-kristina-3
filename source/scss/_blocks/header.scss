@@ -1,6 +1,11 @@
 .header {
   position: sticky;
   font-weight: 700;
+  z-index: 80;
+
+  &__burger-menu {
+    display: none;
+  }
 }
 
 .nav {
@@ -11,48 +16,78 @@
 
   &__list {
     display: flex;
-
-    &_link {
-      color: $color-text-2;
-    }
+    gap: 20px;
   }
+
+  &__link {
+    color: $color-text-2;
+  }
+
+  &__link-home {
+    color: $color-text;
+  }
+
+  &__link:hover {
+    color: $color-text;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+
+  &__link:active {
+    opacity: 0.3;
+  }
+
+  &__link:focus {
+    color: $color-text;
+    cursor: pointer;
+  }
+
 
   &__button {
     background: none;
     font-weight: 700;
     color: $color-text-2;
   }
+
+  &__button:focus {
+    color: $color-text;
+    cursor: pointer;
+  }
+
+  &__button:hover {
+    color: $color-text;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+
+  &__button:active {
+    opacity: 0.3;
+  }
 }
 
-.nav__list_item:not(:last-child) {
-  margin-right: 20px;
-}
+@media screen and (max-width: 480px) {
+  .header {
+    position: relative;
 
-.nav__link:hover {
-  color: $color-text-2;
-  transition: 0.4s;
-}
+    &__burger-menu {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
 
-.nav__link:active {
-  opacity: 0.3;
-}
+      &_home {
+        top: 140px;
+      }
+    }
 
-.nav__list_link:hover {
-  color: $color-text;
-  cursor: pointer;
-  transition: 0.4s;
-}
 
-.nav__list_link:active {
-  opacity: 0.3;
-}
+    &__burger-menu:hover {
+      opacity: 0.5;
+      transition: 0.4s;
+    }
+  }
 
-.nav__button:hover {
-  color: $color-text;
-  cursor: pointer;
-  transition: 0.4s;
-}
-
-.nav__button:active {
-  opacity: 0.3;
+  .nav {
+    display: none;
+  }
 }

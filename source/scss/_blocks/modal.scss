@@ -1,0 +1,252 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 250;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(246, 246, 246, 0.99);
+    z-index: 100;
+  }
+
+  &__form {
+    @include font (14px, 16px, 500);
+    position: relative;
+    background: #FFFFFF;
+    border: 2px solid #070707;
+  }
+
+  &__btn-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: -3px;
+    margin-right: -39px;
+    background: none;
+    cursor: pointer;
+    fill: #828282;
+  }
+
+  &__btn-close:hover {
+    fill: #070707;
+    transition: 0.3s;
+  }
+
+  &__input {
+    border: 2px solid #E5E5E5;
+    margin: 6px 0 20px;
+    height: 44px;
+    width: 282px;
+  }
+
+  &__input:hover {
+    border: 2px solid #828282;
+    cursor: pointer;
+  }
+
+  &__wrapp {
+    display: inline-block;
+    padding: 40px;
+  }
+
+  &__wrapp-inner {
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+  }
+
+  &__wrapp-content {
+    width: 290px;
+  }
+
+  &__checkbox {
+    margin-bottom: 20px;
+    align-items: center;
+    display: flex;
+  }
+
+  &__checkbox:hover {
+    color: #828282;
+    cursor: pointer;
+  }
+
+  &__checkbox-custum {
+    appearance: none;
+    border: 2px solid #070707;
+    width: 17px;
+    height: 17px;
+    border-radius: 3px;
+    margin-right: 15px;
+  }
+
+  &__checkbox-custum:hover {
+    border: 2px solid #828282;
+    cursor: pointer;
+  }
+
+  &__checkbox-custum:checked {
+    background-image: url(../img/icon/checked.png);
+    background-position: center;
+    cursor: pointer;
+  }
+}
+
+.sign-in-modal {
+  &__form {
+    width: 370px;
+    margin: 225px auto;
+  }
+}
+
+.message-modal {
+  &__form {
+    width: 680px;
+    margin: 113px auto;
+  }
+
+  &__name,
+  &__subject,
+  &__email,
+  &__phone {
+    max-width: 290px;
+  }
+
+  &__discuss {
+    max-width: 600px;
+    overflow: hidden;
+  }
+
+  &__discuss-text {
+    width: 592px;
+    min-height: 150px;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    border: 2px solid #E5E5E5;
+    resize: none;
+  }
+
+  &__discuss-text:hover {
+    border: 2px solid #828282;
+    cursor: pointer;
+  }
+}
+
+.register-modal {
+  &__form {
+    width: 680px;
+    margin: 118px auto;
+  }
+
+  &__input {
+    width: 592px;
+  }
+}
+
+.password-modal {
+  &__form {
+    width: 370px;
+    margin: 225px auto;
+  }
+}
+
+.data-modal {
+  &__form {
+    width: 680px;
+    margin: 118px auto;
+  }
+
+  &__input {
+    width: 592px;
+  }
+
+  &__wrapp-file {
+    height: 73px;
+    margin-bottom: 30px;
+  }
+
+  &__file-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &__file-label {
+    position: relative;
+  }
+
+  &__file-label:hover {
+    cursor: pointer;
+
+  }
+
+  &__file-label::after {
+    content: '';
+    width: 258px;
+    height: 18px;
+    border: 2px solid #E5E5E5;
+    position: absolute;
+    left: 0;
+    top: 23px;
+    background-image: url(../../img/icon/fileUpload.svg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    padding: 14px;
+  }
+
+  &__file-span {
+    position: absolute;
+    left: 14;
+    left: 40px;
+    top: 37px;
+    width: 121px;
+    @include font (18px, 21px, 400);
+  }
+}
+
+
+.submit__modal:hover {
+  border: 2px solid #828282;
+  color: #828282;
+  background-color: #FFFFFF;
+}
+
+@media screen and (max-width:800px) {
+  .register-modal {
+    &__form {
+      width: 330px;
+    }
+  
+    &__input {
+      width: 282px;
+    }
+
+    &__email {
+      width: 290px;
+    }
+  }
+
+  .modal {
+
+    &__wrapp {
+      padding: 20px;
+    }
+
+    &__wrapp-inner {
+      max-width: 290px;
+      flex-wrap: wrap;
+    }
+  }
+  
+}

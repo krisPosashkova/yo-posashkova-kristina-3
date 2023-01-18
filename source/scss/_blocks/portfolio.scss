@@ -1,0 +1,91 @@
+.portfolio {
+  background-color: $color-bg;
+  padding: 60px 0;
+
+  &__slider {
+    margin-top: 50px;
+    position: relative;
+  }
+
+  &__slider-slide {
+    background-position: top;
+    background-size: cover;
+
+    &_one {
+      background-image: url(../img/portfolio1.png);
+    }
+
+    &_two {
+      background-image: url(../img/portfolio2.png);
+    }
+
+    &_three {
+      background-image: url(../img/portfolio3.png);
+    }
+
+    &_four {
+      background-image: url(../img/portfolio4.png);
+    }
+
+    &_five {
+      background-image: url(../img/portfolio5.png);
+    }
+  }
+
+  &__slider-btn {
+    color: #070707;
+  }
+
+
+  &__description {
+    background: rgba(7, 7, 7, 0.85);
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 31px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &__description-link {
+    color: #FFFFFF;
+    text-align: center;
+    display: block;
+    @include font (18px, 21px, 500);
+    margin-bottom: 16px;
+    border-bottom: 1px dashed #FFFFFF;
+    display: inline-block;
+  }
+
+  &__description-link:hover {
+    border-bottom: 1px solid;
+  }
+
+  &__description-text {
+    text-align: center;
+    @include font (14px, 16px, 500);
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio {
+    padding: 40px 0;
+  
+    &__slider {
+      margin-top: 30px;
+    }
+
+/*     &__description {
+      padding: 20px 15px;
+    } */
+
+    &__description-link {
+      text-decoration: underline 1px dashed;
+      border-bottom: none;
+    }
+  }
+} 

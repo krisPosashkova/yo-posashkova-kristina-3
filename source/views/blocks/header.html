@@ -2,16 +2,21 @@
   <div class="container">
     <nav class="nav">
       <div class="nav__home">
-        <a class="nav__link" href="#">Home</a>
+        <a class="nav__link" href="index.html">Home</a>
       </div>
       <ul class="nav__list">
         <li class="nav__list_item">
-          <a class="nav__list_link" href="">My blog</a>
+          <a class="nav__link" href="./blog.html">My blog</a>
         </li>
         <li class="nav__list_item">
-          <a class="nav__list_link" href="">My profile</a>
+          <a class="nav__link" href="./profile.html">My profile</a>
         </li>
       </ul>
     </nav>
+    <div class="header__burger-menu burger-menu_js">
+      <img src="./img/icon/menuBtn.svg" alt="">
+    </div>
+    @@include('blocks/header_mobile.html')
   </div>
+  <script src="js/header.js" defer></script>
 </header>

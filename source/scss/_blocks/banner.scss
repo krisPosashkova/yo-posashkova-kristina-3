@@ -1,0 +1,141 @@
+.banner {
+  margin: 40px 0 60px 0;
+
+  &__wrapper-title {
+    display: flex;
+    gap: 40px;
+    align-items: flex-end;
+    margin-bottom: 36px;
+  }
+
+  &__title {
+    max-width: 280px;
+    display: inline-block;
+  }
+
+  &__description {
+    @include font (18px, 21px, 400);
+    max-width: 260px;
+    padding-bottom: 6px;
+    display: block;
+  }
+}
+
+.slider {
+  user-select: none;
+  margin: 50px auto;
+  
+
+  &__wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__inner-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform;
+  }
+
+  &__slide {
+    display: flex;
+    flex-shrink: 0;
+    height: 465px;
+    align-items: center;
+    justify-content: center;
+    background-size:cover ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: 56%;
+    background-size: 98%;
+  }
+
+    &__slide:nth-child(4n+1) {
+      background-image: url(../img/bannerSlide1.jpg);
+    }
+    &__slide:nth-child(4n+2) {
+      background-image: url(../img/bannerSlide2.jpg);
+      background-size: cover;
+    }
+  
+
+  &__bottom-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+  &__button {
+    background: none;
+  }
+
+  &__button:hover {
+    opacity: 0.5;
+  }
+
+  &__button:disabled {
+    opacity: 0.1;
+  }
+
+  &__pagination {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition:  backraund-color 0.4s;
+    background-color: #E5E5E5;
+  }
+
+  &__dot_active {
+    background-color: #070707;;
+  }
+
+  &__dot:not(.slider__dot_active):hover,
+  &__dot:not(.slider__dot_active):focus {
+    background-color: #828282;
+  }
+}
+
+@media screen and (max-width:1100px) {
+  .slider {
+
+    &__slide {
+      background-size: 138%;
+    }
+  }
+}
+
+
+
+@media screen and (max-width:480px) {
+
+  .banner {
+    &__wrapper-title {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    &__description {
+      max-width: 200px;
+    }
+  }
+
+  .slider__slide {
+    background-position-y: 69%;
+  } 
+}
+
+@media screen and (max-width: 430px) {
+  .slider__slide {
+    background-position-y: 86%;
+  }
+}

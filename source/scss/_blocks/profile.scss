@@ -1,0 +1,67 @@
+.profile {
+  margin-top: 40px;
+
+  &__data {
+    display: flex;
+    margin-top: 40px;
+    gap: 105px;
+
+  }
+
+  &__data-avatar {
+    width: 320px;
+    height: 450px;
+    background: #F6F6F6;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    background-image: url(../../img/noPhoto.png);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__data-personal {
+    max-width: 255px;
+  }
+
+  &__wrapp-button {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .profile {
+    display: flex;
+
+    &__data-avatar {
+      width: 314px;
+    }
+
+    &__data {
+      gap: 40px;
+      flex-direction: column;
+    }
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    display: flex;
+    margin-top: 30px;
+
+    &__data-avatar {
+      width: 280px;
+    }
+
+    &__title {
+      max-width: 205px;
+    }
+    &__data {
+      gap: 40px;
+      flex-direction: column;
+    }
+  }
+  
+}

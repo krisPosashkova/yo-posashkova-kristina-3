@@ -1,0 +1,46 @@
+<section class="data-modal data-modal_js modal">
+  <h2 class="heading__hidden">data</h2>
+  <div class="modal__overlay">
+    <form class="modal__form data-modal__form data-modal__form_js" id="data" name="data" action="#">
+      <div class="modal__wrapp">
+        <div class="data-modal__email">
+          <label for="input-email" class="data-modal__email-label">Email</label>
+          <input type="text" id="input-email" name="email" class="modal__input data-modal__input">
+        </div>
+
+        <div class="modal__wrapp-inner">
+          <div class="modal__wrapp-content">
+            <label for="input-name" class="data-modal__name-label">Name</label>
+            <input type="text" id="input-name" name="name" class="modal__input">
+          </div>
+          <div class="modal__wrapp-content">
+            <label for="input-surname" class="data-modal__surname-label">Surname</label>
+            <input name="surname" type="text" id="input-surname" name="surname" class="modal__input">
+          </div>
+        </div>
+
+        <div class="modal__wrapp-inner">
+          <div class="modal__wrapp-content">
+            <label for="input-location" class="data-modal__location-label">Location</label>
+            <input type="text" id="input-location" name="location" class="modal__input">
+          </div>
+          <div class="modal__wrapp-content">
+            <label for="input-age" class="data-modal__age-label">Age</label>
+            <input type="number" id="input-age" name="age" class="modal__input">
+          </div>
+        </div>
+        <div class="modal__wrapp-content data-modal__wrapp-file">
+          <label for="image_uploads" class="data-modal__file-label">Profile picture <span class="data-modal__file-span">Choose a file...</span></label>
+          <input type="file" id="image_uploads" name="image_uploads" class="data-modal__file-input" accept=".jpg, .jpeg, .png" >
+        </div>
+        <button class="button submit__modal data__submit_js" name="submit" type="submit">Submit changes</button>
+      </div>
+      <button class="modal__btn-close data__close_js" type="button" name="button-close" value="close"><svg
+          width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.82861" width="32" height="4" rx="2" transform="rotate(45 2.82861 0)" />
+          <rect y="22.6289" width="32" height="4" rx="2" transform="rotate(-45 0 22.6289)" />
+        </svg>
+      </button>
+    </form>
+  </div>
+</section>
