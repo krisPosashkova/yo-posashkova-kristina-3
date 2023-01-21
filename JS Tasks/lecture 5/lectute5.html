@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <form class="fiter-form" name="filterForm" action="#">
+    <div>
+      <span>Выберете модель телефона:</span>
+      <label class="radio-button">
+        <input type="checkbox" name="modelPhone" value="apple">
+        Iphone
+      </label>
+      <label class="radio-button">
+        <input type="checkbox" name="modelPhone" value="samsung">
+        Samsung
+      </label>
+      <label class="radio-button">
+        <input type="checkbox" name="modelPhone" value="xiaomi">
+        Xiaomi
+      </label>
+    </div>
+    <div>
+      <span>Сколько показать на одной странице:</span>
+      <label class="radio-button">
+        <input type="radio" name="limit" value="5">
+        5
+      </label>
+      <label class="radio-button">
+        <input type="radio" name="limit" value="10">
+        10
+      </label>
+      <label class="radio-button">
+        <input type="radio" name="limit" value="15">
+        15
+      </labe>
+    </div>
+    <div class="js-posts-block"></div>
+    <button class="filter-button">Отфильтровать</button>
+  </form>
+</body>
+<script src="./lecture5.js"></script>
+
+</html>

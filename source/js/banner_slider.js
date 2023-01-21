@@ -1,110 +1,101 @@
 
-// объявляем переменные 
 const slider = document.querySelector('.slider_js');
 const wrapperSlider = slider.querySelector('.slider-wrapper_js');
 const innerSlider = wrapperSlider.querySelector('.slider-inner_js');
 const buttonNext = slider.querySelector('.button-next_js');
 const buttonBack = slider.querySelector('.button-back_js');
-const pagination = slider.querySelector('.slider-pagination_js')
-
-// находим все слайды и делаем массив
+const pagination = slider.querySelector('.slider-pagination_js');
 const slides = [...document.querySelectorAll('.slider-slide_js')];
-
-// для получения кол-ва слайдов создаем перемнную
 const slidesCount = slides.length;
-
-// анимация
-const animationDuration = 500;
-let timer = null;
-
+let slideWidth = wrapperSlider.offsetWidth;
+let activeSlideIndex = 0;
+let animationDuration = 600;
+let timerID;
 let dots = [];
 
-// получает ширину контейнеру
-let slideWidth = wrapperSlider.offsetWidth;
+const timerLogic = () => {
+  clearTimeout(timerID);
+  innerSlider.style.transition = `transform ${animationDuration}ms`;
+  timerID = setTimeout(() => {
+    innerSlider.style.transition = '';
+  }, animationDuration);
+};
 
-// создаем переменную для взаимодействия
-let activeSlideIndex = 0;
-
-let position = {x:0};
-let checkerMouseDown = false;
-
-wrapperSlider.addEventListener('mousedown', (e) => {
-  position.x = e.clientX;
-  checkerMouseDown = true;
-})
-
-wrapperSlider.addEventListener('mouseup', endMouseEvent);
-wrapperSlider.addEventListener('mouseout', endMouseEvent);
-
-function endMouseEvent(e) {
-  if (!checkerMouseDown) return;
-  checkerMouseDown = false;
-  if (position.x > e.clientX) {
-    setActiveSlide(activeSlideIndex + 1);
-  } else {
-    setActiveSlide(activeSlideIndex - 1);
-  }
+const initSlide = (index) => {
+  let mar = index * slideWidth
+  innerSlider.style.transform = `translateX(${mar * (-1)}px)`;
+  timerLogic();
 }
-
-window.addEventListener('resize', () => {
-  initWidth();
-  setActiveSlide(activeSlideIndex, false);
-});
-
-createDots();
-
-
-
-// пишем функцию, index-это то на что мы хотим поменять наш слайд, порядок начинается с 0
-
-function setActiveSlide(index, withAnimation = true) {
-  if ( index < 0 || index >= slidesCount ) return;   /* запрещаем уходить за пределы кол-ва слайдов */
-  innerSlider.style.transform = `translateX(${index * slideWidth * (-1)}px)` /* начальный слайд равен 0, */
-  
-  buttonBack.removeAttribute('disabled');
-  buttonNext.removeAttribute('disabled');
-
-  if (withAnimation) {
-    clearTimeout(timer);
-    innerSlider.style.transition = `transform ${animationDuration}ms`;
-    timer = setTimeout(() => {
-      innerSlider.style.transition = '';
-    }, animationDuration)
-  }
-
-  if (index ===0) {
-    buttonBack.setAttribute('disabled', '');
-  }
-
-  if (index === slidesCount - 1) {
-    buttonNext.setAttribute('disabled', '');
-  }
-
-  dots[activeSlideIndex].classList.remove('slider__dot_active');
-  dots[index].classList.add('slider__dot_active');
-  activeSlideIndex = index;
-}
-
-initWidth();
-setActiveSlide(0);
 
 function initWidth() {
   slideWidth = wrapperSlider.offsetWidth;
-
   slides.forEach(slide => {
     slide.style.width = `${slideWidth}px`;
   })
-}
+};
 
-buttonNext.addEventListener('click', () => {
-  setActiveSlide(activeSlideIndex + 1);
-})
+const updateStrCount = () => {
+  +localStorage.getItem('activeSlideIndex') 
+    ? (activeSlideIndex = +localStorage.getItem('activeSlideIndex'))
+    : (activeSlideIndex = 0);
+  };
 
-buttonBack.addEventListener('click', () => {
-  setActiveSlide(activeSlideIndex -1);
-})
+const changeActiveDot = (index) => {
+  const activeDot = document.querySelector('.slider__dot_active');
+  activeDot.classList.remove('slider__dot_active');
+  dots[index].classList.add('slider__dot_active');
+}; 
 
-// создание всех точек 
+
+const setActiveSlide = (whereTo) => {
+  if ( activeSlideIndex < 0 || activeSlideIndex > slidesCount ) return;
+  switch (whereTo) {
+    case "next":
+      if (activeSlideIndex < slidesCount) {
+        activeSlideIndex = activeSlideIndex + 1;
+        initSlide(activeSlideIndex);
+        localStorage.setItem("activeSlideIndex", activeSlideIndex);
+        localStorage.getItem('activeSlideIndex');
+        buttonBack.removeAttribute("disabled");
+      }
+      if (activeSlideIndex === slidesCount - 1) {
+        buttonNext.setAttribute("disabled", "disabled");
+      }
+      break;
+    case "back":
+      if (activeSlideIndex !== 0) {
+        activeSlideIndex = activeSlideIndex - 1;
+        initSlide(activeSlideIndex);
+        localStorage.setItem("activeSlideIndex", activeSlideIndex); 
+        localStorage.getItem('activeSlideIndex');
+        buttonNext.removeAttribute("disabled");
+      }
+      if (activeSlideIndex === 0) {
+        buttonBack.setAttribute("disabled", "disabled");
+      }
+      break;
+  }
+  changeActiveDot(activeSlideIndex);
+  timerLogic();
+};
+
+  createDots();
+  initWidth();
+  updateStrCount();
+
+buttonBack.addEventListener("click", () => setActiveSlide("back"));
+buttonNext.addEventListener("click", () => setActiveSlide("next"));
+
+window.addEventListener('load', () => {
+    initSlide(activeSlideIndex);
+    changeActiveDot(activeSlideIndex);
+    if (activeSlideIndex === slidesCount -1) {
+      buttonNext.setAttribute("disabled", "disabled");
+    }
+    if (activeSlideIndex === 0) {
+      buttonBack.setAttribute("disabled", "disabled");
+    }
+});
 
 function createDots() {
   for(let i = 0; i < slidesCount; i++) {
@@ -114,7 +105,6 @@ function createDots() {
   }
 }
 
-// cоздание точки
 function createDot(index) {
   const dot = document.createElement('button');
   dot.classList.add('slider__dot');
@@ -124,9 +114,15 @@ function createDot(index) {
   }
 
   dot.addEventListener('click', () => {
-    setActiveSlide(index);
+    initSlide(index);
+    changeActiveDot(index);
+    timerLogic();
   })
 
   return dot;
-}
+} 
 
+window.addEventListener('resize', () => {
+  initWidth();
+  setActiveSlide(activeSlideIndex);
+});
