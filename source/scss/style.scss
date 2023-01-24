@@ -24,6 +24,8 @@
 @import "_blocks/modal";
 @import "_blocks/profile";
 @import "_blocks/blog";
+@import "_blocks/preloader";
+@import "_blocks/card_blog";
 
 
 
@@ -120,6 +122,8 @@
 .swiper-button-next {
   color: #070707;
 }
+
+
 
 @media screen and (max-width:430px) {
   .button-to-top {

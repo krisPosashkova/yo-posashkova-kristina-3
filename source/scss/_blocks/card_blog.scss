@@ -1,0 +1,75 @@
+.card {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    padding-top: 20px;
+
+    &__tags-wrapper {
+        display: flex;
+        gap: 5px;
+    }
+    &__tags {
+        width: 30px;
+        height: 10px;
+        border-radius: 5px;
+        display: block
+    }
+
+    &__title {
+        @include font (24px, 29px, 700);
+        margin: 0;
+        padding: 0;
+    }
+
+    &__info-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px
+
+    }
+
+    &__info-item {
+        @include font (14px, 16px, 500);
+        color: #828282;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    &__text {
+        @include font (18px, 21px, 400);
+    }
+
+    &__link {
+        @include font (18px, 22px, 700);
+        border-bottom: 1px dashed #070707;
+        display: inline-block;
+        max-width: 125px;
+    }
+
+    &__link:hover {
+        border-bottom: 1px solid;
+    }
+}
+
+.card::after {
+    content: '';
+    height: 2px;
+    width: 100%;
+    background: #E5E5E5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+@media screen and (max-width: 650px) {
+    .card {
+        flex-wrap: wrap;
+    }
+    
+}

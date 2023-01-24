@@ -34,42 +34,9 @@
         <form class="form-filter" name="filterForm" action="#">
           <fieldset class="form-filter__item form-filter__tag">
             <legend class="form-filter__legend">Tags</legend>
-            <ul class="form-filter__tag-list">
-              <li class="form-filter__tag-item">
-                <input class="checkbox-custom checkbox-custom" type="checkbox" id="input-blue" name="color" value="blue" checked>
-                <label class="checkbox-custom__label-tag label_blue" for="input-blue"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom filter-checkbox_js" type="checkbox" id="input-cyan" name="color" value="cyan">
-                <label class="checkbox-custom__label-tag label_cyan" for="input-cyan"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom filter-checkbox_js" type="checkbox" id="input-yellow" name="color" value="yellow">
-                <label class="checkbox-custom__label-tag label_yellow" for="input-yellow"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom" type="checkbox" id="input-turquoise" name="color" value="turquoise">
-                <label class="checkbox-custom__label-tag label_turquoise" for="input-turquoise"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom filter-checkbox_js" type="checkbox" id="input-orange" name="color" value="orange">
-                <label class="checkbox-custom__label-tag label_orange" for="input-orange"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom filter-checkbox_js" type="checkbox" id="input-pink" name="color" value="pink" checked>
-                <label class="checkbox-custom__label-tag label_pink" for="input-pink"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom filter-checkbox_js" type="checkbox" id="input-purple" name="color" value="purple">
-                <label class="checkbox-custom__label-tag label_purple" for="input-purple"> <span class="checkbox-span"></span></label>
-              </li>
-              <li class="form-filter__tag-item">
-                <input class=" checkbox-custom filter-checkbox_js" type="checkbox" id="input-green" name="color" value="green">
-                <label class="checkbox-custom__label-tag label_green" for="input-green"> <span class="checkbox-span"></span></label>
-              </li>
-            </ul>
+            <ul class="form-filter__tag-list tag-list_js"></ul>
           </fieldset>
-          <fieldset class="form-filter__item form-filter__views">
+          <fieldset class="form-filter__item form-filter__views" >
             <legend class="form-filter__legend">Views</legend>
             <ul class="form-filter__views-list">
               <li class="form-filter__views-item">
@@ -116,8 +83,8 @@
               </li>
             </ul>
           </fieldset>
-          <fieldset class="form-filter__item form-filter__sort">
-            <legend class="form-filter__legend">Sort by</legend>
+          <fieldset class="form-filter__item form-filter__sort" name="sortBy">
+            <legend class="form-filter__legend" name="sortBy" >Sort by</legend>
             <ul class="form-filter__sort-list">
               <li class="form-filter__sort-item">
                 <input type="radio" id="sort-one" class="radio-button" name="sort" value="date">
@@ -134,13 +101,22 @@
             </ul>
           </fieldset>
           <div class="form-filter__item form-filter__wrapp-reset">
-            <button class="button" name="submitForm" type="submit">Reset</button>
+            <button class="button" name="submitForm" type="submit">Apply</button>
           </div>
         </form>
         <form class="form-search" action="#">
           <input type="text" name="inputSearch" class="form-search__input">
           <button class="button" type="button" name="buttonSearch">Search</button>
         </form>
+        <div class="blog__post posts-result_js">
+          
+        </div>
+        <div class="pagination">
+          <button class="pagination__button  button-back_js"> <img src="./img/icon/buttonBack.svg" alt="button-back"></button>
+          <div class="pagination__list pagination_js"></div>
+          <button class="pagination__button button-next_js"> <img src="./img/icon/buttonNext.svg" alt="button-next"></button>
+        </div>
+        
       </div>
     </section>
   </main>
@@ -152,10 +128,17 @@
       <rect x="21.5801" y="14.7" width="16.5512" height="3" rx="1.5" transform="rotate(-135 21.5801 14.7)" />
     </svg>
   </button>
+  <div class="preloader preloader_hidden preloader_js">
+    <div class="preloader__row">
+      <div class="preloader__item"></div>
+      <div class="preloader__item"></div>
+    </div>
+  </div>
 
 
   <script src="js/app.js" defer></script>
-  <script src="js/filter_form.js" defer></script>
+  <script src="js/blog.js"></script>
+  <script src="js/filter_form.js"></script>
 </body>
 
 </html>
