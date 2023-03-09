@@ -29,7 +29,7 @@
     </script>
   </head>
   <body>
-    @@include('blocks/header_home.html')
+    @@include('blocks/header.html')
       <main>
 
         <section class="banner">
@@ -116,7 +116,7 @@
             
               </div>
               <div class="portfolio__description">
-                <a class="portfolio__description-link" href="">Learning site for DL Academy courses</a>
+                <a class="portfolio__description-link" href="https://krisposashkova.github.io/Dl-Academy-learning-Project/index.html" target="_blank">Learning site for DL Academy courses</a>
                 <p class="portfolio__description-text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
               </div>
             </div>
@@ -133,12 +133,19 @@
         <rect x="21.5801" y="14.7" width="16.5512" height="3" rx="1.5" transform="rotate(-135 21.5801 14.7)"/>
       </svg>
     </button>
-    @@include('blocks/sign_in_modal.html')
-    @@include('blocks/register_modal.html')
-
-    <script src="js/app.js" defer></script>
+    @@include('blocks/sign_in.html')
+    @@include('blocks/registration.html')
+    <div class="preloader hidden preloader-main_js">
+      <div class="preloader__row">
+        <div class="preloader__item"></div>
+        <div class="preloader__item"></div>
+      </div>
+    </div>
+    <script src="js/common.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/sign_in.js" defer></script>
+    <script src="js/registration.js" defer></script>
     <script src="js/banner_slider.js" defer></script>
-    <script src="js/profile.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="js/swiper.js"></script>
   </body>

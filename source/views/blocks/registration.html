@@ -1,4 +1,4 @@
-<section class="register-modal register-modal_js modal">
+<section class="register-modal register-modal_js modal hidden">
   <h2 class="heading__hidden">Register</h2>
   <div class="modal__overlay">
     <form class="modal__form register-modal__form register__form_js" id="registartion" name="registartion" action="#">
@@ -45,7 +45,7 @@
           <input type="checkbox" id="checkbox-yes" name="checkbox" value="yes" class="modal__checkbox-custum">  
           Clicking on the button, you consent to the processing of your personal data.
         </label>
-  
+        <span class="checkbox-invalid register__checkbox-invalid_js">Agree to the processing of your personal information</span>
         <button class="button submit__modal register__submit_js" name="submit" type="submit">Sign up</button>
       </div>
       <button class="modal__btn-close register__close_js" type="button" name="button-close" value="close"><svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
@@ -54,5 +54,13 @@
         </svg>
       </button>
     </form>
+    <div class="server-response register-response_js hidden">
+      <p>Form has been sent successfully</p>
+      <button class="modal__btn-close register-response__close-btn_js" type="button" name="button-close" value="close"><svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2.82861" width="32" height="4" rx="2" transform="rotate(45 2.82861 0)" />
+        <rect y="22.6289" width="32" height="4" rx="2" transform="rotate(-45 0 22.6289)" />
+        </svg>
+      </button>
+    </div>
   </div>
 </section>

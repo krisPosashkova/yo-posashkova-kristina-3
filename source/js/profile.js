@@ -1,47 +1,181 @@
-const changePasswordBtn = document.querySelector('.password_js');
-const changePasswordModal = document.querySelector('.password-modal_js');
-const closeModalChangePassword = document.querySelector('.password__close_js');
+const loaderProfile = document.querySelector('.preloader-profile_js');
 
-const changeDataBtn = document.querySelector('.data_js');
-const changeDataModal = document.querySelector('.data-modal_js');
-const closeModalChangeData = document.querySelector('.data__close_js');
+if (!localStorage.getItem('token')) {
+  location.pathname = '/';
+}
 
+// Редактирование данных пользователя
 
-changePasswordBtn.addEventListener('click', () => {
-  changePasswordModal.classList.remove('modal')
-})
+(function(){
+  const profileImg = document.querySelector('.profile-avatar_js');
+  const profileName = document.querySelector('.profile-name_js');
+  const profileSurname = document.querySelector('.profile-surname_js');
+  const profileLocation = document.querySelector('.profile-location_js');
+  const profileAge = document.querySelector('.profile-age_js');
+  const profileEmail = document.querySelector('.profile-email_js');
+  const fileNameSpan = document.querySelector('.file-span_js');
+  const SERVER_URL = 'https://academy.directlinedev.com';
+  const editDataBtn = document.querySelector('.data-edit_js');
+  const editDataModal = document.querySelector('.data-modal_js');
+  const closeDataModal = document.querySelector('.data__close_js');
+  const editDataForm = document.forms.editData;
+  const serverResponseData = document.querySelector('.data-response_js');
+  const closeResponseData = document.querySelector('.data-response__close-btn_js');
+  let profile = null;
 
-closeModalChangePassword.addEventListener('click', () => {
-  changePasswordModal.classList.add('modal')
-});
+  rerenderLinks();
+  getProfile();
 
+  function rerenderProfile (profile) {
+    profileImg.style.backgroundImage = `url(${SERVER_URL}${profile.photoUrl})`;
+    profileAge.innerText = profile.age;
+    profileEmail.innerText = profile.email;
+    profileLocation.innerText = profile.location;
+    profileSurname.innerText = profile.surname;
+    profileName.innerText = profile.name;
+  }
 
-changeDataBtn.addEventListener('click', () => {
-  changeDataModal.classList.remove('modal')
-})
+  function getProfile() {
+    sendRequest({
+      method: 'GET',
+      url: `api/users/${localStorage.getItem('userId')}`,
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success) {
+        profile = response.data;
+        rerenderProfile(profile);
+        console.log(profile)
+      } else {
+        throw new Error(`${response.status} ${response.message}`)
+      }
+    })
+    .catch((err) => {
 
-closeModalChangeData.addEventListener('click', () => {
-  changeDataModal.classList.add('modal')
-});
+    })
+  }
 
+  const changeData = (e) => {
+    e.preventDefault();
+    showLoader(loaderProfile);
+    const data = new FormData(editDataForm);
+    sendRequest({
+      method: 'PUT',
+      url: 'api/users',
+      body: data,
+      headers: {
+        'x-access-token': localStorage.getItem('token'),
+      }
+    })
+    .then(response => {
+      if(response.status === 401 || response.status === 403) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        location.pathname = '/';
+        return;
+      }
+      return response.json();
+    })
 
+    .then(response => {
+      if(response.success) {
+        profile = response.data;
+        rerenderProfile(profile);
+        editDataForm.style.display = 'none';
+        serverResponseData.classList.remove('hidden');
+        console.log(profile)
+      } else {
+        throw response;
+      }
+    })
 
+    .catch ((err) => {
+      if (err.message) {
+        console.log(err._message);
+      }      
+      clearErrors();
+      editDataForm.style.display = 'none';
+      serverResponseData.classList.remove('hidden');
+      serverResponseData.style.color = '#EB3617';
+      serverResponseData.children[0].textContent = 'The form was sent but the server transmits an error: “The form was sent but the server transmits an error';
+    })
 
-// Валидация смена пароля
+    .finally(() => {
+      hiddenLoader(loaderProfile);
+      location.reload();
+      setTimeout(() => {
+        location.reload();
+        editDataModal.classList.add('hidden');
+        serverResponseData.classList.add('hidden');
+        editDataForm.style.display = 'block';
+      }, 2000)
+    })
+  }
+
+  editDataForm.avatar.addEventListener("change", () => {
+    const fileValue = editDataForm.avatar.value;
+    fileNameSpan.innerText = fileValue.substring(fileValue.lastIndexOf("\\")+1);
+  });
+
+  editDataBtn.addEventListener('click', () => {
+    editDataForm.email.value = profile.email;
+    editDataForm.name.value = profile.name;
+    editDataForm.surname.value = profile.surname;
+    editDataForm.age.value = profile.age;
+    editDataForm.location.value = profile.location;
+    editDataForm.avatar.file = profile.photoUrl;
+    editDataModal.classList.remove('hidden');
+  })
+
+  closeDataModal.addEventListener('click', () => {
+    editDataModal.classList.add('hidden')
+  });
+
+  closeResponseData.addEventListener('click', () => {
+    editDataModal.classList.add('hidden')
+  });
+
+  editDataForm.addEventListener('submit', changeData);
+  console.log(data)
+})();
+
+// Смена пароля
 
 (function () {
-  const changePassword = document.forms.changePassword;
+  const editPasswordForm = document.forms.editPassword;
+  const oldPassword = editPasswordForm.elements.oldPassword;
+  const newPassword = editPasswordForm.elements.newPassword;
+  const repeatPassword = editPasswordForm.elements.repeatPassword;
+  const editPasswordBtn = document.querySelector('.password-edit_js');
+  const editPasswordModal = document.querySelector('.password-modal_js');
+  const closePasswordModal = document.querySelector('.password__close_js');
+  const serverResponsePassword = document.querySelector('.password-response_js');
+  const closeResponsePassword = document.querySelector('.password-response__close-btn_js');
 
-  const oldPassword = changePassword.elements.oldPassword;
-  const newPassword = changePassword.elements.newPassword;
-  const repeatPassword = changePassword.elements.repeatPassword;
+  getPassword();
 
+  function getPassword() {
+    sendRequest({
+      method: 'GET',
+      url: `api/users/${localStorage.getItem('userId')}`,
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success) {
+        passwordData = response.data;
+      } else {
+        throw new Error(`${response.status} ${response.message}`)
+      }
+    })
+    .catch(() => {
 
-  changePassword.addEventListener ('input', (e) => {
+    })
+  }
+
+  editPasswordForm.addEventListener('input', (e) => {
     e.preventDefault();
 
     // Для удаления повтора сообщения на странице
-
     const excellentMessages = document.querySelectorAll('.valid-feedback');
     if (excellentMessages) {
       for (let excellentMessage of excellentMessages) {
@@ -51,31 +185,27 @@ closeModalChangeData.addEventListener('click', () => {
 
     let statusMessage = {};
 
-
     if (newPassword.value.length > 6) {
       statusMessage.newPassword = 'All right'
     }
 
-    if (repeatPassword.value === newPassword.value  && repeatPassword.value !== '') {
+    if (repeatPassword.value === newPassword.value && repeatPassword.value !== '') {
       statusMessage.repeatPassword = 'All right'
     }
 
-
-
     if (Object.keys(statusMessage).length) {
-        Object.keys(statusMessage).forEach((key) => {
-          const excellentMessage = statusMessage[key];
-          const input = changePassword.elements[key];
-          setExcellentText (input, excellentMessage);
-        })
-        return;
+      Object.keys(statusMessage).forEach((key) => {
+        const excellentMessage = statusMessage[key];
+        const input = editPassword.elements[key];
+        setExcellentText(input, excellentMessage);
+      })
+      return;
     }
-  }) 
+  })
 
-  changePassword.addEventListener('submit', (e) => {
+  editPasswordForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    // Для удаления повтора ошибки на странице
+    showLoader(loaderProfile);
 
     const errorMessages = document.querySelectorAll('.invalid-feedback');
     if (errorMessages) {
@@ -95,100 +225,122 @@ closeModalChangeData.addEventListener('click', () => {
     }
 
     if (Object.keys(errors).length) {
-        Object.keys(errors).forEach((key) =>{
-          const errorMessage = errors[key];
-          const input = changePassword.elements[key];
-          setError(input, errorMessage);
-        })
+      Object.keys(errors).forEach((key) => {
+        const errorMessage = errors[key];
+        const input = editPasswordForm.elements[key];
+        setError(input, errorMessage);
+      })
       return;
     }
 
-    const data = {
-      oldPassword: oldPassword.value,
-      newPassword: newPassword.value,
-      repeatPassword: repeatPassword.value,
-    };
+    const data = new FormData(editPasswordForm);
+    sendRequest({
+      method: 'PUT',
+      url: 'api/users',
+      body: data,
+      headers: {
+        'x-access-token': localStorage.getItem('token'),
+      }
+    })
 
-    console.log(data);
+    .then(response => 
+      {
+      if(response.status === 401 || response.status === 403) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        location.pathname = '/';
+        return;
+      }
+      return response.json();
+    })
+    .then(response => {
+      if(response.success) {
+        passwordData = response.data;
+        editPasswordForm.style.display = 'none';
+        serverResponsePassword.classList.remove('hidden');
+      } else {
+        throw response;
+      }
+    })
+    .catch ((err) => {
+      if (err.message) {
+        console.log(err._message);
+      }      
+      clearErrors();
+      editPasswordForm.style.display = 'none';
+      serverResponsePassword.classList.remove('hidden');
+      serverResponsePassword.style.color = '#EB3617';
+      serverResponsePassword.children[0].textContent = 'The form was sent but the server transmits an error: “The form was sent but the server transmits an error';
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      location.pathname = '/';
+      console.log('delete');
+    })
+    .finally(() => {
+      hiddenLoader(loaderProfile);
+      setTimeout(() => {
+        editPasswordModal.classList.add('hidden');
+        serverResponsePassword.classList.add('hidden');
+        editPasswordForm.style.display = 'block';
+      }, 2000)
+    })
   })
+
+  editPasswordBtn.addEventListener('click', () => {
+    editPasswordModal.classList.remove('hidden')
+  })
+  
+  closePasswordModal.addEventListener('click', () => {
+    editPasswordModal.classList.add('hidden')
+  });
+
+  closeResponsePassword.addEventListener('click', () => {
+    editPasswordModal.classList.add('hidden')
+  });
 })();
 
+// Удаление профиля
 
+(function(){
 
+  const deleteBtn = document.querySelector('.delete_js');
 
+  deleteBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    showLoader(loaderProfile);
+  
+    deleteProfile();
 
-// Создание контейнера под ошибку
+    function deleteProfile() {
+      sendRequest({
+        method: 'DELETE',
+        url: `api/users/${localStorage.getItem('userId')}`,
+        headers: {
+          'x-access-token': localStorage.getItem('token'),
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      })
+      .then (response => response.json())
 
-function errorCreator (message) {
-  let messageErrorContainer = document.createElement ('div');
-  messageErrorContainer.classList.add('invalid-feedback');
-  messageErrorContainer.innerText = message;
-  return messageErrorContainer;
-}
+      .then(response => {
+        if(response.success) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          location.pathname = '/';
+          console.log('delete');
 
-// Функция для работы с текстовыми инпутами вставляем и удаляем в верстку ошибку
-
-function setErrorText (input, errorMessage) {
-  const error = errorCreator(errorMessage);
-  input.classList.add('is-invalid');
-  input.insertAdjacentElement('afterend', error);
-  input.addEventListener('input', () => {
-    error.remove();
-    input.classList.remove('is-invalid')
-  }, {once: true})
-}
-
-// Функция для чекбоксов и радиокнопок
-
-function setErrorChecked (inputs, errorMessage) {
-  const error = errorCreator(errorMessage);
-  inputs [0].parentElement.parentElement.insertAdjacentElement('afterend', error);
-  function handler() {
-    error.remove();
-    for (let input of [...inputs]) {
-      input.removeEventListener('input', handler);
-      input.classList.remove('is-invalid');
+        }
+      })
+      .catch(() => {
+        console.log('no delete')
+        // if(response.status === 401 || response.status === 403) {
+        //   console.log(`${err._message}`)
+        // }
+      })
+      .finally(() => {
+        hiddenLoader(loaderProfile);
+      })
     }
-  }
-  for (let input of [...inputs]) {
-    input.classList.add('is-invalid');
-    input.addEventListener('input', handler);
-  }
-}
 
-function setError (input, errorMessage) {
-  if (input [0]) {
-    setErrorChecked(input, errorMessage);
-  } else {
-    setErrorText(input, errorMessage);
-  }
-}
-
-// Cоздание контейнера под сообщение об успешном заполнении поля
-
-function excellentCreator (message) {
-  let messageExcellentCreator = document.createElement ('div');
-  messageExcellentCreator.classList.add ('valid-feedback');
-  messageExcellentCreator.innerText = message;
-  return messageExcellentCreator;
-}
-
-function setExcellentText (input, excellentMessage) {
-  const excellent = excellentCreator (excellentMessage);
-  input.classList.add('is-valid');
-  input.insertAdjacentElement('afterend', excellent);
-  input.addEventListener('input', () => {
-    excellent.remove();
-    input.classList.remove('is-valid')
-  }, {once: true})
-} 
-
-// Валидация почты
-
-function isEmailValid (email) {
-  return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
-}
-
-
-
-
+  })
+})();

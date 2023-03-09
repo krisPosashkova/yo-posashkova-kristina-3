@@ -1,4 +1,4 @@
-<section class="message-modal message-modal_js modal">
+<section class="message-modal message-modal_js modal hidden">
   <h2 class="heading__hidden">Send message</h2>
   <div class="modal__overlay">
     <form class="modal__form message-modal__form" name="sendMessage" action="#">
@@ -30,13 +30,13 @@
           <label for="message" class="message-modal__discuss-label">What do you want to discuss with me?</label>
           <textarea class="message-modal__discuss-text" name="message" id="message" cols="30" rows="10"></textarea>
         </div>
-        
-        <label class="modal__checkbox" for="checkbox-yes">
-          <input class="modal__checkbox-custum"  type="checkbox" id="checkbox-yes" name="checkbox">  
-          Clicking on the button, you consent to the processing of your personal data.
-        </label>
-      
-        <button class="button submit__modal message__submit_js" type="submit">Send</button>
+
+          <label class="modal__checkbox" for="checkbox-yes">
+            <input class="modal__checkbox-custum"  type="checkbox" id="checkbox-yes" name="checkbox">  
+            Clicking on the button, you consent to the processing of your personal data.
+          </label>
+          <span class="checkbox-invalid message__checkbox-invalid_js">Agree to the processing of your personal information</span>
+          <button class="button submit__modal message-submit_js" type="submit">Send</button>
         
       </div>
       <button class="modal__btn-close message__close_js" type="button" name="button" value="close"><svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
@@ -45,5 +45,13 @@
         </svg>
       </button>
     </form>
+    <div class="server-response message-response_js hidden">
+      <p>Form has been sent successfully</p>
+      <button class="modal__btn-close response-close message-response__close-btn_js" type="button" name="button-close" value="close"><svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2.82861" width="32" height="4" rx="2" transform="rotate(45 2.82861 0)" />
+        <rect y="22.6289" width="32" height="4" rx="2" transform="rotate(-45 0 22.6289)" />
+        </svg>
+      </button>
+    </div>
   </div>
 </section>

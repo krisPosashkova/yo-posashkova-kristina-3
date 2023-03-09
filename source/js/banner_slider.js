@@ -124,5 +124,6 @@ function createDot(index) {
 
 window.addEventListener('resize', () => {
   initWidth();
+  initSlide(activeSlideIndex);
   setActiveSlide(activeSlideIndex);
 });

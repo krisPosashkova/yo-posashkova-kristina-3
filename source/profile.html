@@ -32,13 +32,38 @@
           <h1 class="profile__title title">My profile</h1>
         </div>
         <div class="profile__data">
-          <div class="profile__data-avatar">
-          </div>
-          <div class="profile__data-personal">
+          <div class="profile__data-avatar profile-avatar_js"></div>
+          <div class="profile__data-personal data-personal_js">
+            <ul class="user-card">
+              <li class="user-card__item">
+                <span class="user-card__item-data_span">Name:</span>
+                <p class="user-card__item-data profile-name_js"></p>
+              </li>
+              <li class="user-card__item">
+                <span class="user-card__item-data_span">Surname:</span>
+                <p class="user-card__item-data profile-surname_js"></p>
+              </li>
+              <li class="user-card__item">
+                <span class="user-card__item-data_span">Email:</span>
+                <p class="user-card__item-data profile-email_js"></p>
+              </li>
+              <li class="user-card__item">
+                <span class="user-card__item-data_span">Password:</span>
+                <p class="user-card__item-data profile-password_js">**************</p>
+              </li>
+              <li class="user-card__item">
+                <span class="user-card__item-data_span">Location:</span>
+                <p class="user-card__item-data profile-location_js"></p>
+              </li>
+              <li class="user-card__item">
+                <span class="user-card__item-data_span">Age:</span>
+                <p class="user-card__item-data profile-age_js"></p>
+              </li>
+            </ul>
             <div class="profile__wrapp-button">
-              <button class="button password_js" name="button" type="button">Change password</button>
-              <button class="button data_js" name="button" type="button">Change other data</button>
-              <button class="button" name="button" type="button">Delete account</button>
+              <button class="button password-edit_js" name="button" type="button">Change password</button>
+              <button class="button data-edit_js" name="button" type="button">Change other data</button>
+              <button class="button delete_js" name="button" type="submit">Delete account</button>
             </div>
           </div>
         </div>
@@ -53,11 +78,17 @@
       <rect x="21.5801" y="14.7" width="16.5512" height="3" rx="1.5" transform="rotate(-135 21.5801 14.7)" />
     </svg>
   </button>
-  @@include('blocks/change_password_modal.html')
-  @@include('blocks/data_modal.html')
-
-  <script src="js/app.js" defer></script>
-
+  @@include('blocks/edit_password.html')
+  @@include('blocks/edit_data.html')
+  <div class="preloader hidden preloader-profile_js">
+    <div class="preloader__row">
+      <div class="preloader__item"></div>
+      <div class="preloader__item"></div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/profile.js" defer></script>
 </body>
 
 </html>

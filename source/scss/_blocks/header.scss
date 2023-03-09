@@ -1,11 +1,18 @@
 .header {
   position: sticky;
   font-weight: 700;
-  z-index: 80;
+}
 
-  &__burger-menu {
-    display: none;
-  }
+.burger-menu {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.burger-menu:hover {
+  opacity: 0.5;
+  transition: 0.4s;
 }
 
 .nav {
@@ -68,23 +75,10 @@
 @media screen and (max-width: 480px) {
   .header {
     position: relative;
+  }
 
-    &__burger-menu {
-      display: block;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-
-      &_home {
-        top: 140px;
-      }
-    }
-
-
-    &__burger-menu:hover {
-      opacity: 0.5;
-      transition: 0.4s;
-    }
+  .burger-menu {
+    display: block;
   }
 
   .nav {

@@ -1,215 +1,164 @@
-const messageBtn = document.querySelector('.message_js');
-const messageModal = document.querySelector('.message-modal_js');
+// const messageBtn = document.querySelector('.message_js');
+// const messageModal = document.querySelector('.message-modal_js');
+// const closeModalMessage = document.querySelector('.message__close_js');
+// const submitMessage = document.querySelector('.message__submit_js');
+// const submit = document.querySelector('.message-submit_js');
+// const serverResponseMessage = document.querySelector('.message-response_js');
+// const closeResponseMessage = document.querySelector('.message-response__close-btn_js');
 
-const closeModalMessage = document.querySelector('.message__close_js');
-
-const submitMessage = document.querySelector('.message__submit_js');
-
-
-
-messageBtn.addEventListener('click', () => {
-  messageModal.classList.remove('modal')
-})
-
-closeModalMessage.addEventListener('click', () => {
-  messageModal.classList.add('modal')
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.code === "Escape") {
-    messageModal.classList.add('modal')
-  }
-});
+// const loaderMessage = document.querySelector('.preloader-main_js');
 
 
-// Отправка сообщения
+// closeModalMessage.addEventListener('click', () => {interactionModal(messageModal)});
+// messageBtn.addEventListener('click', () => {interactionModal(messageModal)});
 
-(function () {
-  // Получение формы
-  const sendMessageForm = document.forms.sendMessage;
+// document.addEventListener('keydown', (e) => {
+//   if (e.code === "Escape") {
+//     interactionModal(messageModal)
+//   }
+// });
 
-  // Получение элементов формы
-  const name = sendMessage.elements.name;
-  const messageSubject = sendMessage.elements.messageSubject;
-  const email = sendMessage.elements.email;
-  const phone = sendMessage.elements.phone;
-  const checkbox = sendMessage.elements.checkbox; 
+// closeResponseMessage.addEventListener('click', () => {
+//   messageModal.classList.add('hidden')
+// });
 
-  sendMessageForm.addEventListener ('input', (e) => {
-    e.preventDefault();
+// // Отправка сообщения
 
-    // Для удаления повтора сообщения на странице
+// (function () {
 
-    const excellentMessages = document.querySelectorAll('.valid-feedback');
-    if (excellentMessages) {
-      for (let excellentMessage of excellentMessages) {
-        excellentMessage.remove();
-      }
-    }
 
-    let statusMessage = {};
+//   const errorCheckbox = document.querySelector('.message__checkbox-invalid_js');
+//   const name = sendMessage.elements.name;
+//   const messageSubject = sendMessage.elements.messageSubject;
+//   const email = sendMessage.elements.email;
+//   const phone = sendMessage.elements.phone;
+//   const checkbox = sendMessage.elements.checkbox;
+//   const sendMessageForm = document.forms.sendMessage;
 
-    if (isEmailValid(email.value)) {
-      statusMessage.email = 'All right'
-    }
+  
 
-    if (name.value.length) {
-      statusMessage.name = 'All right'
-    }
+//   sendMessageForm.addEventListener ('input', (e) => {
+//     e.preventDefault();
 
-    if (messageSubject.value.length) {
-      statusMessage.messageSubject = 'All right'
-    }
+//     clearExcellentMessages ();
 
-    if (isPhoneValid(phone.value)) {
-      statusMessage.phone = 'All right'
-    }
+//     let statusMessage = {};
+
+//     if (isEmailValid(email.value)) {
+//       statusMessage.email = 'All right'
+//     }
+
+//     if (name.value.length) {
+//       statusMessage.name = 'All right'
+//     }
+
+//     if (messageSubject.value.length) {
+//       statusMessage.messageSubject = 'All right'
+//     }
+
+//     if (isPhoneValid(phone.value)) {
+//       statusMessage.phone = 'All right'
+//     }
     
 
-    if (Object.keys(statusMessage).length) {
-        Object.keys(statusMessage).forEach((key) => {
-          const excellentMessage = statusMessage[key];
-          const input = sendMessageForm.elements[key];
-          setExcellentText (input, excellentMessage);
-        })
-        return;
-    }
-  }) 
+//     if (Object.keys(statusMessage).length) {
+//         Object.keys(statusMessage).forEach((key) => {
+//           const excellentMessage = statusMessage[key];
+//           const input = sendMessageForm.elements[key];
+//           setExcellentText (input, excellentMessage);
+//         })
+//         return;
+//     }
+//   }) 
 
-  sendMessageForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+//   sendMessageForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     showLoader(loaderMessage)
 
-    // Для удаления повтора ошибки на странице
+//     clearErrors();
 
-    const errorMessages = document.querySelectorAll('.invalid-feedback');
-      if (errorMessages) {
-        for (let errorMessage of errorMessages) {
-          errorMessage.remove();
-        }
-      }
+//     let errors = {};
 
-    // создание объекта ошибок
-    let errors = {};
 
-    // вносим ошибки в объект ошибок
+//     if (!isEmailValid(email.value)) {
+//       errors.email = 'Please enter a valid email address (your entry is not in the format "somebody@example.com")'
+//     }
 
-    if (!isEmailValid(email.value)) {
-      errors.email = 'Please enter a valid email address (your entry is not in the format "somebody@example.com")'
-    }
+//     if (!name.value.length) {
+//       errors.name = 'This field is required'
+//     }
 
-    if (!name.value.length) {
-      errors.name = 'This field is required'
-    }
+//     if (!messageSubject.value.length) {
+//       errors.messageSubject = 'This field is required'
+//     }
 
-    if (!messageSubject.value.length) {
-      errors.messageSubject = 'This field is required'
-    }
+//     if (!isPhoneValid(phone.value)) {
+//       errors.phone = 'Please use this example to enter the phone number +7(900)111-11-11'
+//     }
 
-    if (!isPhoneValid(phone.value)) {
-      errors.phone = 'Please use this example to enter the phone number +7(900)111-11-11'
-    }
-
-    if (!checkbox.checked) {
-      /* errors.checkbox = 'Agree to the processing of your personal information' */
-    } 
+//     if (checkbox.checked == true) {
+//       checkbox.value = 1;
+//     } else {
+//       checkbox.value = 0;
+//       setErrorCheckedCheckbox(checkbox, errorCheckbox);
+//     }
     
-    // Перебор ключей и вызов функции по созданию ошибок
-    if (Object.keys(errors).length) {
-      Object.keys(errors).forEach((key) =>{
-        const errorMessage = errors[key];
-        const input = sendMessageForm.elements[key];
-        setErrorText(input, errorMessage);
-      })
-    return;
-  }
+//     // Перебор ключей и вызов функции по созданию ошибок
+//     if (Object.keys(errors).length || !checkbox.checked) {
+//       Object.keys(errors).forEach((key) =>{
+//         const errorMessage = errors[key];
+//         const input = sendMessageForm.elements[key];
+//         setErrorText(input, errorMessage);
+//         hiddenLoader(loaderMessage);
+//       })
+//     return;
+//   }
+//   let data = {
+//     email: email.value,
+//     name: name.value,
+//     messageSubject: messageSubject.value,
+//     phone: phone.value,
+//     checkbox: checkbox.value,
+//   }  
+//   // console.log(JSON.stringify(data));
 
-    const data = {
-      email: email.value,
-      name: name.value,
-      messageSubject: messageSubject.value,
-      phone: phone.value,
-      checkbox: checkbox.value,
-    } 
-    console.log (data) 
-  })
-})();
+//   // sendRequest ({
+//   //   url: 'api/emails',
+//   //   method: 'POST',
+//   //   headers: {
+//   //     'Content-Type': 'application/json;charset=utf-8'
+//   //   },
+//   //   body: JSON.stringify(data),
+//   // })
+//   // data = new FormData(sendMessageForm);
+//   console.log(JSON.stringify(data));
+//   sendRequest({
+//     method: 'POST',
+//     url: 'api/emails',
+//     to: 'kristina.posashkova@icloud.com',
+//     body: JSON.stringify(data),
+//     headers: {
+//       'Content-Type':  'application/json'
+//     }
+//   })
+//   .then (response => response.json())
+//   .then(response => {
+//     if (response.success) {
+//       registrationForm.style.display = 'none';
+//       serverResponseMessage.classList.remove('hidden');
+//     }
+//   })
 
+//   .catch(err => {
+//     clearErrors();
+//     sendMessageForm.style.display = 'none';
+//     serverResponseMessage.classList.remove('hidden');
+//     serverResponseMessage.style.color = '#EB3617';
+//     serverResponseMessage.children[0].textContent = 'The form was sent but the server transmits an error: “The form was sent but the server transmits an error';
+//   })
 
-
-
-// Создание контейнера под ошибку
-
-function errorCreator (message) {
-  let messageErrorContainer = document.createElement ('div');
-  messageErrorContainer.classList.add('invalid-feedback');
-  messageErrorContainer.innerText = message;
-  return messageErrorContainer;
-}
-
-// Функция для работы с текстовыми инпутами вставляем и удаляем в верстку ошибку
-
-function setErrorText (input, errorMessage) {
-  const error = errorCreator(errorMessage);
-  input.classList.add('is-invalid');
-  input.insertAdjacentElement('afterend', error);
-  input.addEventListener('input', () => {
-    error.remove();
-    input.classList.remove('is-invalid')
-  }, {once: true})
-}
-
-// Функция для чекбоксов и радиокнопок
-
-function setErrorChecked (inputs, errorMessage) {
-  const error = errorCreator(errorMessage);
-  inputs [0].parentElement.parentElement.insertAdjacentElement('afterend', error);
-  function handler() {
-    error.remove();
-    for (let input of [...inputs]) {
-      input.removeEventListener('input', handler);
-      input.classList.remove('is-invalid');
-    }
-  }
-  for (let input of [...inputs]) {
-    input.classList.add('is-invalid');
-    input.addEventListener('input', handler);
-  }
-}
-
-function setError (input, errorMessage) {
-  if (input [0]) {
-    setErrorChecked(input, errorMessage);
-  } else {
-    setErrorText(input, errorMessage);
-  }
-}
-
-// Cоздание контейнера под сообщение об успешном заполнении поля
-
-function excellentCreator (message) {
-  let messageExcellentCreator = document.createElement ('div');
-  messageExcellentCreator.classList.add ('valid-feedback');
-  messageExcellentCreator.innerText = message;
-  return messageExcellentCreator;
-}
-
-function setExcellentText (input, excellentMessage) {
-  const excellent = excellentCreator (excellentMessage);
-  input.classList.add('is-valid');
-  input.insertAdjacentElement('afterend', excellent);
-  input.addEventListener('input', () => {
-    excellent.remove();
-    input.classList.remove('is-valid')
-  }, {once: true})
-} 
-
-// Валидация почты
-
-function isEmailValid (email) {
-  return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
-}
-
-
-function isPhoneValid (phone) {
-  return phone.match(/^[\d\+][\d\(\)\ -]{4,14}\d$/);
-}
+//   .finally (() => {
+//     hiddenLoader(loaderMessage);
+//   })
+//   })  
+// })();

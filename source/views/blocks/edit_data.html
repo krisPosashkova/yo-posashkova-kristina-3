@@ -1,7 +1,7 @@
-<section class="data-modal data-modal_js modal">
+<section class="data-modal data-modal_js modal hidden">
   <h2 class="heading__hidden">data</h2>
   <div class="modal__overlay">
-    <form class="modal__form data-modal__form data-modal__form_js" id="data" name="data" action="#">
+    <form class="modal__form data-modal__form data-modal__form_js" id="data" name="editData" action="#">
       <div class="modal__wrapp">
         <div class="data-modal__email">
           <label for="input-email" class="data-modal__email-label">Email</label>
@@ -30,8 +30,8 @@
           </div>
         </div>
         <div class="modal__wrapp-content data-modal__wrapp-file">
-          <label for="image_uploads" class="data-modal__file-label">Profile picture <span class="data-modal__file-span">Choose a file...</span></label>
-          <input type="file" id="image_uploads" name="image_uploads" class="data-modal__file-input" accept=".jpg, .jpeg, .png" >
+          <label for="image_uploads" class="data-modal__file-label">Profile picture <span class="data-modal__file-span file-span_js">Choose a file...</span></label>
+          <input type="file" id="image_uploads" name="avatar" class="data-modal__file-input file-input_js" accept=".jpg, .jpeg, .png" >
         </div>
         <button class="button submit__modal data__submit_js" name="submit" type="submit">Submit changes</button>
       </div>
@@ -42,5 +42,13 @@
         </svg>
       </button>
     </form>
+    <div class="server-response data-response_js hidden">
+      <p>Form has been sent successfully</p>
+      <button class="modal__btn-close response-close data-response__close-btn_js" type="button" name="button-close" value="close"><svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2.82861" width="32" height="4" rx="2" transform="rotate(45 2.82861 0)" />
+        <rect y="22.6289" width="32" height="4" rx="2" transform="rotate(-45 0 22.6289)" />
+        </svg>
+      </button>
+    </div>
   </div>
 </section>

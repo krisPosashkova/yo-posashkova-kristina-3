@@ -1,7 +1,4 @@
 .preloader {
-  display: none;
-
-  &_open {
     position: fixed;
     left: 0;
     top: 0;
@@ -12,7 +9,6 @@
     z-index: 1001;
     display: block;
 
-  }
 
   &__row {
     position: relative;
