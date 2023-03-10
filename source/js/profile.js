@@ -1,8 +1,6 @@
 const loaderProfile = document.querySelector('.preloader-profile_js');
 
-if (!localStorage.getItem('token')) {
-  location.pathname = '/';
-}
+
 
 // Редактирование данных пользователя
 
@@ -333,9 +331,9 @@ if (!localStorage.getItem('token')) {
       })
       .catch(() => {
         console.log('no delete')
-        // if(response.status === 401 || response.status === 403) {
-        //   console.log(`${err._message}`)
-        // }
+        if(response.status === 401 || response.status === 403) {
+          console.log(`${err._message}`)
+        }
       })
       .finally(() => {
         hiddenLoader(loaderProfile);
